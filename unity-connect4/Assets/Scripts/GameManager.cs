@@ -72,18 +72,16 @@ public class GameManager : MonoBehaviour
         card.transform.SetParent(target.transform);
         
         board[transformsInColumn.Length - 2 - posCardColumn,column]= playerShift == Shift.Player2? 1:2;
-        CheckWin(1);
-        CheckWin(2);
+        isCheckWin(1);
+        isCheckWin(2);
         //PrintMatrix();
     }
 
 
 
 
-    public void CheckWin(int player)
+    public bool isCheckWin(int player)
     {
-        //print("WIN");
-        
         for (int row = 0; row < 6; row++)
         {
             for (int col = 0; col < 7-3; col++)
@@ -93,7 +91,7 @@ public class GameManager : MonoBehaviour
                     board[row, col + 2] == player &&
                     board[row, col + 3] == player)
                 {
-                    print("WIN Y "+"player "+player);
+                    return true;
                 }
             }
         }
@@ -108,7 +106,7 @@ public class GameManager : MonoBehaviour
                     board[row+2, col] == player &&
                     board[row+3, col] == player)
                 {
-                    print("WIN X"+"player "+player);
+                    return true;
                 }
             }
         }
@@ -123,7 +121,7 @@ public class GameManager : MonoBehaviour
                     board[row+2, col+2] == player &&
                     board[row+3, col+3] == player)
                 {
-                    print("WIN +X +Y"+"player "+player);
+                    return true;
                 }
             
             
@@ -133,11 +131,12 @@ public class GameManager : MonoBehaviour
                     board[row+2, col+1] == player &&
                     board[row+3, col] == player)
                 {
-                    print("WIN +X +Y"+"player "+player);
+                    return true;
                 }
             }
         }
-        
+
+        return false;
     }
     
     public void PrintMatrix()

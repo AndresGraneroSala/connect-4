@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Conffeti
+    uniqueID: 4125442481
+    locked: 0
