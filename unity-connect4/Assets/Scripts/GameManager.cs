@@ -23,7 +23,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int winsPlayer1, winsPlayer2;
     
     public int[,] board= new int[6,7];
-    
+
+    [SerializeField] private Text winsPlayer1Text, winsPlayer2Text;
+
+    [SerializeField] private ParticleSystem conffetiParticle;
+
     private void Start()
     {
         playerTurn.color = playerShift == Shift.Player1 ? Color.red : Color.blue;
@@ -73,15 +77,31 @@ public class GameManager : MonoBehaviour
         card.transform.SetParent(target.transform);
         
         board[transformsInColumn.Length - 2 - posCardColumn,column]= playerShift == Shift.Player2? 1:2;
+
+
         winsPlayer1+= isCheckWin(1)? 1:0;
-        winsPlayer2+= isCheckWin(2)? 1:0;
+        winsPlayer1Text.text = winsPlayer1.ToString();
+
+        winsPlayer2 += isCheckWin(2)? 1:0;
+        winsPlayer2Text.text = winsPlayer2.ToString();
+
+		if (isCheckWin(1)|| isCheckWin(2))
+		{
+            ResetBoard();
+            conffetiParticle.Play();
+		}
+
         //PrintMatrix();
     }
 
+	public void ResetBoard()
+	{
+        ObjectPoolingManager.SharedInstance.ResetCards();
+        board= new int[6, 7];
+    }
 
 
-
-    public bool isCheckWin(int player)
+	public bool isCheckWin(int player)
     {
         for (int row = 0; row < 6; row++)
         {

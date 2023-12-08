@@ -7,7 +7,7 @@ using UnityEngine;
 public class ObjectPoolingManager : MonoBehaviour
 {
     [SerializeField] private int totalCards;
-    [SerializeField] private List<GameObject> cards;
+    [HideInInspector] public List<GameObject> cards;
     [SerializeField] private GameObject player;
 
     public static ObjectPoolingManager SharedInstance;
@@ -33,6 +33,22 @@ public class ObjectPoolingManager : MonoBehaviour
             card.SetActive(false);
         }
     }
+
+    public void ResetCards()
+	{
+        CardStats []stats = Transform.FindObjectsOfType<CardStats>(true);
+
+		foreach (var stat in stats)
+		{
+            cards.Add(stat.gameObject);
+		}
+
+		foreach (var card in cards)
+		{
+            card.transform.SetParent(transform);
+            card.SetActive(false);
+		}
+	}
 
     public GameObject GetFirsCard()
     {
