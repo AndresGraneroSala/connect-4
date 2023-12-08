@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Text playerTurn;
 
+    [SerializeField] private int winsPlayer1, winsPlayer2;
     
     public int[,] board= new int[6,7];
     
@@ -72,8 +73,8 @@ public class GameManager : MonoBehaviour
         card.transform.SetParent(target.transform);
         
         board[transformsInColumn.Length - 2 - posCardColumn,column]= playerShift == Shift.Player2? 1:2;
-        isCheckWin(1);
-        isCheckWin(2);
+        winsPlayer1+= isCheckWin(1)? 1:0;
+        winsPlayer2+= isCheckWin(2)? 1:0;
         //PrintMatrix();
     }
 
