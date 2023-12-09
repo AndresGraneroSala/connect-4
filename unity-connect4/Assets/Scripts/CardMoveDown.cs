@@ -11,7 +11,7 @@ public class CardMoveDown : MonoBehaviour
         if (target.position.y >= gameObject.transform.position.y)
         {
             gameObject.transform.position = target.position;
-            Destroy(this);
+            this.enabled = false;
             return;
         }
         transform.position -= new Vector3(0, speed*Time.deltaTime, 0);

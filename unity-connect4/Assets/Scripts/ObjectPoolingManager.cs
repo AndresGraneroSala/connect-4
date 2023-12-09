@@ -36,25 +36,25 @@ public class ObjectPoolingManager : MonoBehaviour
 
     public void ResetCards()
 	{
-        CardStats []stats = Transform.FindObjectsOfType<CardStats>(true);
-
-		foreach (var stat in stats)
-		{
-            cards.Add(stat.gameObject);
-		}
 
 		foreach (var card in cards)
 		{
-            card.transform.SetParent(transform);
             card.SetActive(false);
+            card.GetComponent<CardMoveDown>().enabled = true;
 		}
+
 	}
 
     public GameObject GetFirsCard()
     {
-        GameObject cardResult= cards[0];
-        cards.Remove(cardResult);
-        return cardResult;
+		for (int i = 0; i < cards.Count; i++)
+		{
+			if (!cards[i].activeSelf)
+			{
+                return cards[i];
+			}
+		}
+        return cards[0];
 
     }
 }

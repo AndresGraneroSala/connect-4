@@ -115,4 +115,6 @@ MonoBehaviour:
   playerStat: 1
   Red: {fileID: 21300000, guid: bb90f7dc7b4749c459df1c651001cb56, type: 3}
   Blue: {fileID: 21300000, guid: 2149cf14f06082a4ab6aa148d60bcf99, type: 3}
+  RedWin: {fileID: 21300000, guid: fa3ee0f02e9858a4b884523db181be08, type: 3}
+  BlueWin: {fileID: 21300000, guid: 1ac3f8df9953dbb4f8f84903485084d1, type: 3}
   spriteRenderer: {fileID: 9118081860151017638}
