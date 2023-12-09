@@ -6,10 +6,26 @@ public class CardMoveDown : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public Transform target;
-    void Update()
+    [SerializeField] private int initResolutionY=1080;
+    [SerializeField] private int actualResolutionY;
+
+
+	private void Start()
+	{
+        actualResolutionY = Screen.height;
+        speed *= (float)initResolutionY / actualResolutionY;
+	}
+
+	void Update()
     {
-        if (target.position.y >= gameObject.transform.position.y)
+
+
+
+
+        if (target.transform.position.y >= gameObject.transform.position.y)
         {
+
+
             gameObject.transform.position = target.position;
             this.enabled = false;
             return;

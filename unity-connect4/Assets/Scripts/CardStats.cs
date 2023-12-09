@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardStats : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class CardStats : MonoBehaviour
 
     [SerializeField] private Players playerStat;
     [SerializeField] private Sprite Red, Blue,RedWin,BlueWin;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Image img;
     
     
     public Players PlayerStat
@@ -22,19 +23,19 @@ public class CardStats : MonoBehaviour
 			switch (value)
 			{
                 case Players.Player1:
-                spriteRenderer.sprite = Red;
+                    img.sprite = Red;
                     break;
 
                 case Players.Player2:
-                    spriteRenderer.sprite = Blue;
+                    img.sprite = Blue;
                     break;
 
                 case Players.Player1Win:
-                    spriteRenderer.sprite = RedWin;
+                    img.sprite = RedWin;
                     break;
 
                 case Players.Player2Win:
-                    spriteRenderer.sprite = BlueWin;
+                    img.sprite = BlueWin;
                     break;
 
 
